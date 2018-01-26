@@ -1,13 +1,21 @@
 package nl.boydroid
 
-import android.app.Activity
 import android.os.Bundle
+import android.util.Log
+import com.greysonparrelli.permiso.PermisoActivity
 
-class PermissionSampleActivity : Activity() {
+class PermissionSampleActivity : PermisoActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Permission.request(android.Manifest.permission.CAMERA, permissionGranted = {})
+        grantMe(android.Manifest.permission.CAMERA, permissionGranted = {
+            if (it) {
+                Log.d("Granted", "yes")
+            } else {
+                Log.d("Granted", "aaaah....shucks!")
+            }
+        })
+
     }
 }
